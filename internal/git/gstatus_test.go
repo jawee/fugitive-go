@@ -19,7 +19,7 @@ func Test(t *testing.T) {
        t.Fatalf("Expected gs to not be null\n")
    }
 
-   if len(gs.Staged) != 1 {
+   if len(gs.Staged) != 2 {
        t.Fatalf("Expected to get %d staged files, got %d\n", 1, len(gs.Staged))
    }
 

@@ -23,6 +23,10 @@ func parseGitStatus(status_output string) (*GitStatus, error) {
         t := lineSplit[0]
         fp := lineSplit[1]
 
+        // A = staged
+        // MM = staged and unstaged after
+        // M = unstaged
+        // ?? = untracked
         switch t {
         case "A":
             gs.Staged = append(gs.Staged, fp)
@@ -30,6 +34,7 @@ func parseGitStatus(status_output string) (*GitStatus, error) {
             gs.Unstaged = append(gs.Unstaged, fp)
         case "MM":
             gs.Unstaged = append(gs.Unstaged, fp)
+            gs.Staged = append(gs.Unstaged, fp)
         case "??":
             gs.Untracked = append(gs.Untracked, fp)
         }
