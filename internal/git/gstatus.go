@@ -10,6 +10,14 @@ type GitStatus struct {
     Untracked []string
 }
 
+func GetStatus() (*GitStatus, error) {
+    return &GitStatus {
+        Staged: []string{"a.txt", "b.txt"},
+        Unstaged: []string{"c.txt", "d.txt"},
+        Untracked: []string{"e.txt", "f.txt"},
+    }, nil
+}
+
 func parseGitStatus(status_output string) (*GitStatus, error) {
     lines := strings.Split(status_output, "\n")
 
