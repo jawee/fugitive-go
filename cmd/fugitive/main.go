@@ -12,6 +12,7 @@ import (
 type model struct {
     state git.GitStatus
     len int
+
     cursor int                
     current string
     currentType string
@@ -31,7 +32,6 @@ func initialModel() *model {
 }
 
 func (m *model) Init() tea.Cmd {
-    // Just return `nil`, which means "no I/O right now, please."
     return nil
 }
 
