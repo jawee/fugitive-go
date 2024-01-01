@@ -52,7 +52,7 @@ func (m *model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
             }
 
         case "down", "j":
-            if m.cursor < m.len-1 {
+            if m.cursor < m.len-1+3 {
                 m.cursor++
             }
 
@@ -68,9 +68,13 @@ func (m *model) View() string {
     s := "Fugitive\n\n"
 
     i := 0
-    s += fmt.Sprintf("Staged\n")
+    cursor := ""
+    if m.cursor == i {
+        cursor = ">"
+    }
+    i++
+    s += fmt.Sprintf("%sStaged\n", cursor)
     for _, choice := range m.state.Staged {
-
         cursor := " " 
         if m.cursor == i {
             cursor = ">" 
@@ -82,7 +86,12 @@ func (m *model) View() string {
         i++
     }
 
-    s += fmt.Sprintf("Unstaged\n")
+    cursor = ""
+    if m.cursor == i {
+        cursor = ">"
+    }
+    s += fmt.Sprintf("%sUnstaged\n", cursor)
+    i++
     for _, choice := range m.state.Unstaged {
 
         cursor := " " 
@@ -96,7 +105,12 @@ func (m *model) View() string {
         i++
     }
 
-    s += fmt.Sprintf("Untracked\n")
+    cursor = ""
+    if m.cursor == i {
+        cursor = ">"
+    }
+    s += fmt.Sprintf("%sUntracked\n", cursor)
+    i++
     for _, choice := range m.state.Untracked {
 
         cursor := " " 
